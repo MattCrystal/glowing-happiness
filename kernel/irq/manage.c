@@ -829,16 +829,14 @@ static int irq_thread(void *data)
 	sched_setscheduler(current, SCHED_FIFO, &param);
 	current->irq_thread = 1;
 
-	irq_thread_check_affinity(desc, action);
-
 	while (!irq_wait_for_interrupt(action)) {
 		irqreturn_t action_ret;
 
 		irq_thread_check_affinity(desc, action);
 
 		action_ret = handler_fn(desc, action);
-		if (!noirqdebug)
-			note_interrupt(action->irq, desc, action_ret);
+		if (action_ret == IRQ_HANDLED)
+			atomic_inc(&desc->threads_handled);
 
 		wake_threads_waitq(desc);
 	}
