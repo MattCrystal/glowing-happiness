@@ -195,7 +195,7 @@ SUBARCH := arm
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH		?= $(SUBARCH)
 CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
-CROSS_COMPILE	:= /home/nineinchnails/boosted-4.9/bin/arm-eabi-
+CROSS_COMPILE	:= /home/nineinchnails/android_platform_prebuilts_gcc_linux-x86_arm_arm-linux-gnueabihf-4.9-master/bin/arm-linux-gnueabihf-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
